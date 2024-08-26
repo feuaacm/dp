@@ -1,67 +1,144 @@
+:root {
+  --color_cyan: #8BE9FD;
+  --color_green: #50FA7B;
+  --color_orange: #FFB86C;
+  --color_pink: #FF79C6;
+  --color_purple: #BD93F9;
+  --color_red: #FF5555;
+  --color_yellow: #F1Fa8C;
+  --color_cyan_dark: #60a2b0;
+  --color_green_dark: #37ad55;
+  --color_orange_dark: #b2804b;
+  --color_pink_dark: #b2548a;
+  --color_purple_dark: #8265ac;
+  --color_red_dark: #b23b3b;
+  --color_yellow_dark: #a7ad61;
+  --color_white: #fff;
+  --color_black: #000;
+  --color_background: #282A36;
+  --color_background_secondary: #21222c;
+  --color_currentLine: #44475A;
+  --color_foreground: #F8F8F2;
+  --color_comment: #6272A4;
+}
+
+@font-face {
+  font-family: adobeCleanMedium;
+  src: url(./Assets/Fonts/SourceCodePro-Medium.ttf)
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  background-color: #000735;
+  background-color: var(--color_background_secondary);
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: 'adobeCleanMedium';
 }
 
 #dpEditor {
+  width: 60vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
-  height: 80%;
-  padding: 1%;
-  background-color: #ed619b;
-  border-radius: 1%;
-  -webkit-border-radius: 1%;
-  -moz-border-radius: 1%;
-  -ms-border-radius: 1%;
-  -o-border-radius: 1%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 5vh;
+  background-color: var(--color_background);
+  border-radius: 1vh;
+  -webkit-border-radius: 1vh;
+  -moz-border-radius: 1vh;
+  -ms-border-radius: 1vh;
+  -o-border-radius: 1vh;
 }
 
 #templateDP {
   position: relative;
   z-index: 1;
+  cursor: grab;
 }
 
 #uploadedProfile {
   object-fit: cover;
 }
 
-#uploadBtn {
-  background-color: brown;
-  padding: 5px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+#uploadButton {}
+
+#uploadButton:hover {}
+
+#downloadButton {}
+
+#downloadButton:hover {}
+
+#choosePhoto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-#downloadButton {
+#dpBlast {
+  padding: 3px;
+  border-color: white;
+  border-width: 3px;
+  border-style: dotted;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+#dpBlastImage {
+  width: 60vh;
+  height: 60vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+.controlRow {
+  display: flex;
+  flex-direction: row;
   margin-top: 10px;
-  background-color: brown;
-  padding: 5px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+}
+
+.controlRow .shadowButton {
+  margin: 1vh;
+  font-size: 2vh;
+  background-color: var(--color_background_secondary);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2vh 2vh;
+  padding: 0.5vh 2vh 0.5vh 2vh;
+  border-radius: 2vh;
+  -webkit-border-radius: 2vh;
+  -moz-border-radius: 2vh;
+  -ms-border-radius: 2vh;
+  -o-border-radius: 2vh;
+}
+
+.controlRow .shadowButton:hover {
+  background-color: var(--color_currentLine);
+  color: var(--color_cyan);
+  transition-duration: 150ms;
+  cursor: pointer;
 }
 
 .stackImage {
   position: relative;
-  width: 100%;
 }
 
 .stackImage img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 0px;
+  left: 0px;
+  width: 60vh;
+  height: 60vh;
+  padding: 0px;
+  margin: 0px;
   border-radius: 1%;
   -webkit-border-radius: 1%;
   -moz-border-radius: 1%;

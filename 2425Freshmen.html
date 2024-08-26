@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta chartset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>FEU Alabang ACM | 24-25 DP Blast</title>
-    <link
-      rel="stylesheet"
-      href="./style.css"
-    />
-    <script src="./Libs/html2canvas.min.js"></script>
-  </head>
+
+<head>
+  <meta chartset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FEU Alabang ACM | 24-25 DP Blast</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" type="text/css" href="./Assets/Stylesheet/all.min.css" />
+  <script src="./Libs/html2canvas.min.js"></script>
+  <script src="./Libs/jquery.min.js"></script>
+</head>
+
+
+<body>
+  <div>
+    <p>Share</p>
+  </div>
   <div id="dpEditor">
-    <div class="stackImage">
-      <img
-        id="templateDP"
-        src="./Assets/Images/Sample.png"
-        alt="Sample Profile"
-      />
-      <img
-        id="uploadedProfile"
-        src="./Assets/Images/SampleProfile.png"
-        alt="Sample Profile"
-      />
-    </div>
-    <div id="controls">
-      <div id="uploadBtn">
-        <input type="file" id="uploadButton" accept=".png, .jpg, .jpeg">
-          <p>Upload</p>
-        </input>
+    <div id="dpBlast">
+      <div class="stackImage">
+        <div id="dpBlastImage">
+          <img id="templateDP" src="./Assets/Images/Sample.png" alt="Sample Profile" />
+          <img id="uploadedProfile" src="./Assets/Images/SampleProfile.png" alt="Sample Profile" />
+        </div>
       </div>
-      <div id="downloadButton">
-        <p>Download</p>
+    </div>
+    <div class="controlRow">
+      <div id="rotateButton" class="shadowButton">
+        <p><i class="fa-solid fa-rotate-right"></i> Rotate</p>
+      </div>
+      <div id="textButton" class="shadowButton">
+        <p><i class="fa-solid fa-font"></i> Text</p>
+      </div>
+      <div id="filterButton" class="shadowButton">
+        <p><i class="fa-solid fa-masks-theater"></i> Filter</p>
+      </div>
+    </div>
+    <div class="controlRow">
+      <div id="uploadButton" class="shadowButton">
+        <input type="file" id="selectFile" accept=".png, .jpg, .jpeg" style="display: none;">
+        </input>
+        <div id="choosePhoto">
+          <p><i class="fa-solid fa-camera"></i> Choose a Photo</p>
+        </div>
+      </div>
+      <div id="downloadButton" class="shadowButton">
+        <p><i class="fa-solid fa-file-arrow-down"></i> Download</p>
       </div>
     </div>
   </div>
   <script src="./index.js"></script>
+</body>
+
 </html>

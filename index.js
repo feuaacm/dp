@@ -1,4 +1,37 @@
 $(document).ready(function () {
+  const uploadedProfile = document.getElementById('uploadedProfile');
+  const templateDP = document.getElementById('templateDP');
+  let rotationAngle = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+  let isDragging = false;
+
+  $('#dpBlastImage').mousedown((e) => {
+    isDragging = true;
+    offsetX = e.offsetX / 2;
+    offsetY = e.offsetY / 2;
+  });
+
+  $(document).mousemove((e) => {
+    if (isDragging) {
+      uploadedProfile.style.left = `${templateDP.style.left - offsetX / 2}px`;
+      uploadedProfile.style.top = `${templateDP.style.top - offsetY / 2}px`;
+    }
+  });
+
+  $(document).mouseup((e) => {
+    isDragging = false;
+  });
+
+  $('#rotateButton').click(function () {
+    const image = document.getElementById('uploadedProfile');
+    console.log(image);
+    console.log(image.style.transform);
+    rotationAngle += 45;
+    image.style.transform = `rotate(${rotationAngle}deg)`;
+    console.log(image.style);
+  });
+
   $('#selectFile').change(function () {
     const file = this.files[0];
     const reader = new FileReader();
@@ -22,11 +55,11 @@ $(document).ready(function () {
       var imgData = canvas.toDataURL('image/png');
       var img = new Image();
       img.src = imgData;
-      // Create a temporary anchor element to trigger the download
+
       var downloadLink = document.createElement('a');
       downloadLink.href = img.src;
       downloadLink.download = `${fileName || ''}.png`;
-      // Simulate a click on the anchor element to trigger the download
+
       downloadLink.click();
       if (typeof callback === 'function') {
         callback();
@@ -35,9 +68,6 @@ $(document).ready(function () {
   }
 
   $('#downloadButton').click(function () {
-    console.log('TESTING PLS PRIN ASDT');
-    downloadElementAsImage(document.getElementById('dpBlastImage'), 'ACM2425-Freshmen DP Blast', function () {
-      console.log('Downloading image...');
-    });
+    downloadElementAsImage(document.getElementById('dpBlastImage'), 'ACM2425-Freshmen DP Blast');
   });
 });

@@ -7,6 +7,7 @@ $(document).ready(function () {
   let isDragging = false;
   let coordX;
   let coordY;
+  let scale = 1;
 
   $('#dpBlastImage').mousedown((e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ $(document).ready(function () {
     console.log('c: ' + offsetX + ' ' + offsetY);
     console.log('d: ' + uploadedProfile.offsetX + ' ' + uploadedProfile.offsetY);
     uploadedProfile.style.transition = '0s ease';
-    templateDP.style.opacity = 0.5;
+    templateDP.style.opacity = 0.6;
   });
 
   function clamp(value, min, max) {
@@ -47,12 +48,25 @@ $(document).ready(function () {
     templateDP.style.opacity = '';
   });
 
+  $('#dpBlastImage').bind('mousewheel', (e) => {
+    e.preventDefault();
+    let direction = e.originalEvent.deltaY > 0 ? -1 : 1;
+    let newScale = scale + direction * 0.15;
+
+    if (newScale < 0.1 || newScale > 5) {
+      return;
+    }
+
+    scale = newScale;
+    uploadedProfile.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
+  });
+
   $('#rotateButton').click(function () {
     const image = document.getElementById('uploadedProfile');
     console.log(image);
     console.log(image.style.transform);
     rotationAngle += 45;
-    image.style.transform = `rotate(${rotationAngle}deg)`;
+    image.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
     console.log(image.style);
   });
 

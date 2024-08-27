@@ -5,22 +5,46 @@ $(document).ready(function () {
   let offsetX = 0;
   let offsetY = 0;
   let isDragging = false;
+  let coordX;
+  let coordY;
 
   $('#dpBlastImage').mousedown((e) => {
+    e.preventDefault();
+
+    offsetX = e.clientX;
+    offsetY = e.clientY;
+
+    if (!uploadedProfile.style.left) uploadedProfile.style.left = '0px';
+    if (!uploadedProfile.style.top) uploadedProfile.style.top = '0px';
+
+    coordX = parseInt(uploadedProfile.style.left);
+    coordY = parseInt(uploadedProfile.style.top);
     isDragging = true;
-    offsetX = e.offsetX / 2;
-    offsetY = e.offsetY / 2;
+    console.log('down');
+    console.log('c: ' + offsetX + ' ' + offsetY);
+    console.log('d: ' + uploadedProfile.offsetX + ' ' + uploadedProfile.offsetY);
+    uploadedProfile.style.transition = '0s ease';
+    templateDP.style.opacity = 0.5;
   });
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
 
   $(document).mousemove((e) => {
     if (isDragging) {
-      uploadedProfile.style.left = `${templateDP.style.left - offsetX / 2}px`;
-      uploadedProfile.style.top = `${templateDP.style.top - offsetY / 2}px`;
+      uploadedProfile.style.left =
+        clamp(coordX + e.clientX - offsetX, uploadedProfile.clientWidth / -2, uploadedProfile.clientWidth / 2) + 'px';
+
+      uploadedProfile.style.top =
+        clamp(coordY + e.clientY - offsetY, uploadedProfile.clientHeight / -2, uploadedProfile.clientHeight / 2) + 'px';
     }
   });
 
   $(document).mouseup((e) => {
     isDragging = false;
+    uploadedProfile.style.transition = '0.05s ease';
+    templateDP.style.opacity = '';
   });
 
   $('#rotateButton').click(function () {

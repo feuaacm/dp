@@ -21,9 +21,6 @@ $(document).ready(function () {
     coordX = parseInt(uploadedProfile.style.left);
     coordY = parseInt(uploadedProfile.style.top);
     isDragging = true;
-    console.log('down');
-    console.log('c: ' + offsetX + ' ' + offsetY);
-    console.log('d: ' + uploadedProfile.offsetX + ' ' + uploadedProfile.offsetY);
     uploadedProfile.style.transition = '0s ease';
     templateDP.style.opacity = 0.6;
   });
@@ -61,13 +58,14 @@ $(document).ready(function () {
     uploadedProfile.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
   });
 
+  $('#dpBlastImage').bind('touchstart', (e) => {
+    e.preventDefault;
+  });
+
   $('#rotateButton').click(function () {
     const image = document.getElementById('uploadedProfile');
-    console.log(image);
-    console.log(image.style.transform);
     rotationAngle += 45;
     image.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
-    console.log(image.style);
   });
 
   $('#selectFile').change(function () {
@@ -82,7 +80,6 @@ $(document).ready(function () {
   });
 
   $('#choosePhoto').click(function () {
-    console.log('test');
     $('#selectFile').click();
   });
 

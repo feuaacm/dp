@@ -10,6 +10,7 @@ $(document).ready(function () {
   let scale = 1;
 
   $('#dpBlastImage').mousedown((e) => {
+    if (e.button != 0) return;
     e.preventDefault();
 
     offsetX = e.clientX;
@@ -40,6 +41,9 @@ $(document).ready(function () {
   });
 
   $(document).mouseup((e) => {
+    if (e.button != 0) return;
+    if (!isDragging) return;
+    e.preventDefault();
     isDragging = false;
     uploadedProfile.style.transition = '0.05s ease';
     templateDP.style.opacity = '';
@@ -58,14 +62,15 @@ $(document).ready(function () {
     uploadedProfile.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
   });
 
-  $('#dpBlastImage').bind('touchstart', (e) => {
-    e.preventDefault;
-  });
+  $('#dpBlastImage')
+    .hammer()
+    .bind('pinchstat pinchmove pinchend', (e) => {
+      console.log('yay ' + e.scale);
+    });
 
   $('#rotateButton').click(function () {
-    const image = document.getElementById('uploadedProfile');
     rotationAngle += 45;
-    image.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
+    uploadedProfile.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
   });
 
   $('#selectFile').change(function () {
